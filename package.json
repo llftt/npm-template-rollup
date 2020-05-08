@@ -1,0 +1,57 @@
+{
+  "name": "npm-template",
+  "version": "1.0.0",
+  "description": "template for npm package",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "browser": "dist/index.min.js",
+  "scripts": {
+    "clean": "rimraf es lib dist",
+    "prepare": "npm run build",
+    "build": "npm run clean && npm run build:umd && npm run build:es && npm run build:lib",
+    "build:umd": "cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "build:es": "babel src --out-dir es",
+    "build:lib": "babel src --out-dir lib --presets=@babel/preset-env",
+    "analyze": "cross-env NODE_ENV=production ANALYZE=1 rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js",
+    "watch:umd": "rollup -c rollup.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llftt/npm-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llftt/npm-template/issues"
+  },
+  "homepage": "https://github.com/llftt/npm-template#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-bundle-worker": "^0.1.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^3.1.1",
+    "rollup-plugin-require-context": "^1.0.0",
+    "rollup-plugin-string": "^3.0.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "rollup-plugin-url": "^3.0.1",
+    "rollup-plugin-visualizer": "^4.0.4"
+  },
+  "files": [
+    "lib",
+    "dist",
+    "es"
+  ]
+}
